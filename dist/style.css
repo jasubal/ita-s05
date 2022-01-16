@@ -5,27 +5,68 @@
 }
 .maxW1280 { max-width: 1280px; }
 .s-main {
-    display: flex;
-    position: relative;
-    top: 10vh;
+    align-items: center;
     background: #FFF;
-    max-width: 800px;
-    padding: 2em;
     border-radius: 20px;
     box-shadow: 1px -1px 11px 0 #b7b7b7;
+    display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    max-width: 800px;
+    padding: 2em;
+    position: relative;
+    top: 10vh;
 }
 #jokeprint {
-    text-align: center;
     align-content: center;
     align-items: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    min-height: 15vh;
     font-size: 1.4em;
+    justify-content: center;
+    min-height: 10vh;
+    text-align: center;
+}
+#puntuaChist {
+    align-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    height: 8em;
+    justify-content: center;
+    list-style: none;
+    width: 15em;
+}
+#puntuaChist li button {
+    align-content: center;
+    align-items: center;
+    background: none;
+    border-radius: 50%;
+    box-shadow: none;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    filter: grayscale(100%);
+    font-size: 2em;
+    height: 2em;
+    justify-content: center;
+    opacity: .8;
+    transition: .3s;
+    width: 2em;
+}
+#puntuaChist li button:hover {
+    filter: grayscale(0);
+    opacity: 1;
+    transition: .3s;
+}
+#puntuaChist li button.active {
+    filter: grayscale(0);
+    font-size: 2.5em;
+    opacity: 1;
+}
+
+.hidden {
+    display: none!important;
 }
 .btn.success {
     padding: 0.6em 2em;

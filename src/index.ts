@@ -4,33 +4,78 @@ const links4Chists: string[] =
   'https://api.chucknorris.io/jokes/random',
 
 ]
-//console.log('Hello World');
-function thenJason(theJoke: string) {
-  const $jokeprint = document.getElementById('jokeprint');
-  $jokeprint!.innerHTML = theJoke
-  //document.getElementById('jokeprint')!.innerHTML = json.joke
+var reportJokes:any = [];
+var jokeID:string;
+var jokeTxt:string;
+var jokeScore:number;
+//const $jokeprint:any = document.getElementById('jokeprint');
+//const $puntuaChist: any = document.getElementById('puntuaChist');
+//const $lisItems: any = document.querySelectorAll('#puntuaChist li');
 
+function mostraChist() {
+  fetch(links4Chists[0],
+    { method: 'GET', headers: {'Accept': 'application/json'},
+  })
+  .then(response => response.json())
+  //.then(json => console.log(json.joke)
+  .then(jsonObj => {
+    thenJason(jsonObj);
+   } )
+}
+
+function thenJason(object: any): void {
+  jokeID  = object.id;
+  jokeTxt = object.joke;
+  const $jokeprint:any = document.getElementById('jokeprint');
+  showPuntuaChist();
+  $jokeprint.innerHTML = object.joke;
+  //console.log(object);
+}
+
+function addJokeData(jokeID: string) {
+  const d = new Date();
+  let d2ISO = d.toISOString();
+    reportJokes.push({
+    id: jokeID ,
+    sore: jokeScore,
+    date: d2ISO,
+    });
+    console.log(reportJokes);
 }
 
 
-function mostraChist() {
 
-    fetch(links4Chists[0],
-      { method: 'GET', headers: {'Accept': 'application/json'},
-    })
-    .then(response => response.json())
-    //.then(json => console.log(json.joke)
-    .then(json => {
-      const theJoke = json.joke;
-      thenJason(theJoke);
-      //const $jokeprint = document.getElementById('jokeprint');
-      //$jokeprint!.innerHTML = json.joke
-      //document.getElementById('jokeprint')!.innerHTML = json.joke
-     } )
-    //.then(json => jokeprint.innerHTML = json.joke);
+function prepareData(el:any){
+  //alert(data.getAttribute("data-score"));
+  jokeScore = el.getAttribute("data-score");
+  //console.log(el);
+  el.classList.add("active");
+  //console.log(score);
+  addJokeData(jokeID);
+  buttonsDisabled();
+}
 
-    console.log('un Chist');
-    // print json to innerHTML
-    //$jokeprint.innerHTML = '<p>' + (json.joke) + '</p>';
+function showPuntuaChist() {
+  const $puntuaChist:any = document.getElementById('puntuaChist');
+  $puntuaChist.classList.remove("hidden");
+  resetActive();
+  buttonsEnabled();
+   //console.log('puntua Chist');
 
-  }
+}
+
+function resetActive()  {
+  document.querySelectorAll('#puntuaChist li button').forEach(function(el:any){
+  el.classList.remove("active");
+  });
+}
+function buttonsDisabled() {
+  document.querySelectorAll('#puntuaChist li button').forEach(function(el:any){
+    el.disabled = true;
+    });
+}
+function buttonsEnabled() {
+  document.querySelectorAll('#puntuaChist li button').forEach(function(el:any){
+    el.disabled = false;
+    });
+}
