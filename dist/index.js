@@ -18,53 +18,61 @@ function mostraChist() {
         .then(jsonObj => {
         thenJason(jsonObj);
     });
+    buttonsDisabled('#buttonNext');
 }
 function thenJason(object) {
     jokeID = object.id;
     jokeTxt = object.joke;
     const $jokeprint = document.getElementById('jokeprint');
+    reportJokes.push({
+        id: jokeID,
+        joke: jokeTxt,
+        score: 'not set yet',
+        date: 'not set yet',
+    });
     showPuntuaChist();
     $jokeprint.innerHTML = object.joke;
     //console.log(object);
+    console.log(reportJokes);
 }
 function addJokeData(jokeID) {
     const d = new Date();
     let d2ISO = d.toISOString();
-    reportJokes.push({
-        id: jokeID,
-        sore: jokeScore,
-        date: d2ISO,
-    });
+    let jokeItem = reportJokes.find((element) => element.id == jokeID);
+    jokeItem.score = jokeScore;
+    jokeItem.date = d2ISO;
     console.log(reportJokes);
 }
 function prepareData(el) {
+    resetActive('#puntuaChist li button');
     //alert(data.getAttribute("data-score"));
     jokeScore = el.getAttribute("data-score");
     //console.log(el);
     el.classList.add("active");
     //console.log(score);
     addJokeData(jokeID);
-    buttonsDisabled();
+    //buttonsDisabled('#puntuaChist li button');
+    buttonsEnabled('#buttonNext');
 }
 function showPuntuaChist() {
     const $puntuaChist = document.getElementById('puntuaChist');
     $puntuaChist.classList.remove("hidden");
-    resetActive();
-    buttonsEnabled();
+    resetActive('#puntuaChist li button');
+    buttonsEnabled('#puntuaChist li button');
     //console.log('puntua Chist');
 }
-function resetActive() {
-    document.querySelectorAll('#puntuaChist li button').forEach(function (el) {
+function resetActive(qSelector) {
+    document.querySelectorAll(qSelector).forEach(function (el) {
         el.classList.remove("active");
     });
 }
-function buttonsDisabled() {
-    document.querySelectorAll('#puntuaChist li button').forEach(function (el) {
+function buttonsDisabled(qSelector) {
+    document.querySelectorAll(qSelector).forEach(function (el) {
         el.disabled = true;
     });
 }
-function buttonsEnabled() {
-    document.querySelectorAll('#puntuaChist li button').forEach(function (el) {
+function buttonsEnabled(qSelector) {
+    document.querySelectorAll(qSelector).forEach(function (el) {
         el.disabled = false;
     });
 }
