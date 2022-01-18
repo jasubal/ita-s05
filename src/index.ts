@@ -8,9 +8,7 @@ var reportJokes:any = [];
 var jokeID:string;
 var jokeTxt:string;
 var jokeScore:number;
-//const $jokeprint:any = document.getElementById('jokeprint');
-//const $puntuaChist: any = document.getElementById('puntuaChist');
-//const $lisItems: any = document.querySelectorAll('#puntuaChist li');
+
 
 function mostraChist() {
   fetch(links4Chists[0],

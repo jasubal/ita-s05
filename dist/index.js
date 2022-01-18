@@ -7,9 +7,6 @@ var reportJokes = [];
 var jokeID;
 var jokeTxt;
 var jokeScore;
-//const $jokeprint:any = document.getElementById('jokeprint');
-//const $puntuaChist: any = document.getElementById('puntuaChist');
-//const $lisItems: any = document.querySelectorAll('#puntuaChist li');
 function mostraChist() {
     fetch(links4Chists[0], { method: 'GET', headers: { 'Accept': 'application/json' },
     })
