@@ -1,14 +1,15 @@
 #page-chist {
     min-height: 100vh;
-    background: url(./img/bg-chist.webp) no-repeat center center;
-    background-size: cover;
+    /*background: url(./img/bg-chist.webp) no-repeat center center;*/
+    background: url(./img/blob-haikei.svg) no-repeat center center;
+    background-size: auto;
 }
+h1 { text-align: center; }
 .maxW1280 { max-width: 1280px; }
 .s-main {
+    color: #FFF;
     align-items: center;
-    background: #FFF;
-    border-radius: 20px;
-    box-shadow: 1px -1px 11px 0 #b7b7b7;
+    background: none;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -23,6 +24,23 @@
     background: #000;
     display: block;
     margin: 0 10px;
+}
+#blobs {
+    position: absolute;
+}
+#blobA {
+    position: absolute;
+    top: 70vh;
+    left: 5vw;
+    width: 10em;
+    height: auto;
+}
+#blobB {
+    position: absolute;
+    top: 20vh;
+    left:85vw;
+    width: 10em;
+    height: auto;
 }
 #weatherContainer {
     padding: 6px 1em;
@@ -66,7 +84,7 @@
     align-items: center;
     display: flex;
     flex-direction: row;
-    height: 8em;
+    height: 4em;
     justify-content: center;
     list-style: none;
     width: 15em;

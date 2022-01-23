@@ -5,9 +5,9 @@ var lat, lon;
 var options = { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 };
 function success(pos) {
     var crd = pos.coords;
-    // console.log('Your current position is:');
-    // console.log('Latitude : ' + crd.latitude);
-    // console.log('Longitude: ' + crd.longitude);
+    console.log('Your current position is:');
+    console.log('Latitude : ' + crd.latitude);
+    console.log('Longitude: ' + crd.longitude);
     // console.log('More or less ' + crd.accuracy + ' meters.');
     lat = crd.latitude;
     lon = crd.longitude;
@@ -24,7 +24,7 @@ navigator.geolocation.getCurrentPosition(success, error, options);
 const wCityId = '1726701'; //Barcelona
 const wAppId = '5004605256296592219da8902d48478d';
 const wUnit = 'metric';
-//const wApiCall = 'https://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lon+'&appid='+wAppId+'&units=' + wUnit;
+//wApiCall = 'https://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lon+'&appid='+wAppId+'&units=' + wUnit;
 //const wApiCall = 'https://api.openweathermap.org/data/2.5/weather?id=' + wCityId + '&appid=' + wAppId + '&units=' + wUnit;
 function mostraTemps(lat, lon) {
     const wApiCall = 'https://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lon + '&appid=' + wAppId + '&units=' + wUnit;
@@ -53,7 +53,7 @@ var jokeScore;
 var jokeFrom;
 function mostraChist() {
     var randNum = Math.round(Math.random() * 2);
-    console.log(randNum);
+    //console.log(randNum);
     fetch(links4Chists[randNum], { method: 'GET', headers: { 'Accept': 'application/json' },
     })
         .then(res => res.json())
@@ -87,7 +87,7 @@ function thenJasonJoke(object, randNum) {
             console.log("no joke");
     }
     console.log("jokeID:" + jokeID);
-    console.log(object);
+    //console.log(object);
     reportJokes.push({
         id: jokeID,
         joke: jokeTxt,

@@ -4,9 +4,9 @@ var lat:any, lon:any;
 var options = { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 };
 function success(pos:any) {
   var crd = pos.coords;
-  // console.log('Your current position is:');
-  // console.log('Latitude : ' + crd.latitude);
-  // console.log('Longitude: ' + crd.longitude);
+  console.log('Your current position is:');
+  console.log('Latitude : ' + crd.latitude);
+  console.log('Longitude: ' + crd.longitude);
   // console.log('More or less ' + crd.accuracy + ' meters.');
   lat = crd.latitude;
   lon = crd.longitude;
@@ -18,15 +18,16 @@ function error(err:any) {
 
 navigator.geolocation.getCurrentPosition(success, error, options);
 
+
 // Weather API
 // from https://openweathermap.org/api
 const wCityId = '1726701'; //Barcelona
 const wAppId = '5004605256296592219da8902d48478d';
 const wUnit = 'metric';
-//const wApiCall = 'https://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lon+'&appid='+wAppId+'&units=' + wUnit;
+//wApiCall = 'https://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lon+'&appid='+wAppId+'&units=' + wUnit;
 //const wApiCall = 'https://api.openweathermap.org/data/2.5/weather?id=' + wCityId + '&appid=' + wAppId + '&units=' + wUnit;
 function mostraTemps(lat:any, lon:any) {
-const wApiCall = 'https://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lon+'&appid='+wAppId+'&units=' + wUnit;
+  const wApiCall = 'https://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lon+'&appid='+wAppId+'&units=' + wUnit;
 fetch(wApiCall,
 { method: 'GET', headers: {'Accept': 'application/json'},
 })
@@ -60,7 +61,7 @@ var jokeFrom:string;
 
 function mostraChist() {
   var randNum = Math.round(Math.random() * 2);
-  console.log(randNum);
+  //console.log(randNum);
 
   fetch(links4Chists[randNum],
     { method: 'GET', headers: {'Accept': 'application/json'},
@@ -103,7 +104,7 @@ function thenJasonJoke(object: any, randNum:number): void {
   }
 
   console.log("jokeID:"+jokeID);
-  console.log(object);
+  //console.log(object);
 
   reportJokes.push({
     id: jokeID ,
