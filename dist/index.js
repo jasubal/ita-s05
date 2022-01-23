@@ -5,10 +5,10 @@ var lat, lon;
 var options = { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 };
 function success(pos) {
     var crd = pos.coords;
-    console.log('Your current position is:');
-    console.log('Latitude : ' + crd.latitude);
-    console.log('Longitude: ' + crd.longitude);
-    console.log('More or less ' + crd.accuracy + ' meters.');
+    // console.log('Your current position is:');
+    // console.log('Latitude : ' + crd.latitude);
+    // console.log('Longitude: ' + crd.longitude);
+    // console.log('More or less ' + crd.accuracy + ' meters.');
     lat = crd.latitude;
     lon = crd.longitude;
     mostraTemps(lat, lon);
@@ -40,27 +40,54 @@ function thenJasonWeather(object) {
     $weatherTemp.innerHTML = object.main.temp + '&deg;C';
     $weatherIcon.innerHTML = '<img src="http://openweathermap.org/img/w/' + object.weather[0].icon + '.png" alt="' + object.weather[0].description + '">';
 }
-//Jokes API
+//Jokes APIs
 const links4Chists = [
     'https://icanhazdadjoke.com/',
     'https://api.chucknorris.io/jokes/random',
+    'https://v2.jokeapi.dev/joke/Any?type=single'
 ];
 var reportJokes = [];
 var jokeID;
 var jokeTxt;
 var jokeScore;
+var jokeFrom;
 function mostraChist() {
-    fetch(links4Chists[0], { method: 'GET', headers: { 'Accept': 'application/json' },
+    var randNum = Math.round(Math.random() * 2);
+    console.log(randNum);
+    fetch(links4Chists[randNum], { method: 'GET', headers: { 'Accept': 'application/json' },
     })
         .then(res => res.json())
         //.then(json => console.log(json.joke)
-        .then(jsonObj => { thenJasonJoke(jsonObj); });
+        .then(jsonObj => { thenJasonJoke(jsonObj, randNum); });
     buttonsDisabled('#buttonNext');
 }
-function thenJasonJoke(object) {
+function thenJasonJoke(object, randNum) {
     const $jokeprint = document.getElementById('jokeprint');
-    jokeID = object.id;
-    jokeTxt = object.joke;
+    const $jokefrom = document.getElementById('jokefrom');
+    switch (randNum) {
+        case 0:
+            jokeFrom = 'icanhazdadjoke.com';
+            //console.log(object.joke);
+            jokeID = object.id;
+            jokeTxt = object.joke;
+            break;
+        case 1:
+            jokeFrom = 'chucknorris.io';
+            //console.log(object.value);
+            jokeID = object.id;
+            jokeTxt = object.value;
+            break;
+        case 2:
+            jokeFrom = 'jokeapi.dev';
+            //console.log(object.joke);
+            jokeID = object.id;
+            jokeTxt = object.joke;
+            break;
+        default:
+            console.log("no joke");
+    }
+    console.log("jokeID:" + jokeID);
+    console.log(object);
     reportJokes.push({
         id: jokeID,
         joke: jokeTxt,
@@ -68,7 +95,8 @@ function thenJasonJoke(object) {
         date: 'not set yet',
     });
     showPuntuaChist();
-    $jokeprint.innerHTML = object.joke;
+    $jokeprint.innerHTML = jokeTxt;
+    $jokefrom.innerHTML = 'Acudit de ' + jokeFrom;
     console.log(reportJokes);
 }
 function addJokeData(jokeID) {

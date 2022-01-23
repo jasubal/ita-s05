@@ -13,9 +13,9 @@
     flex-direction: column;
     justify-content: center;
     max-width: 800px;
-    padding: 2em;
+    padding: 1em;
     position: relative;
-    top: 10vh;
+    top: 3vw;
 }
 .separator {
     height: 3em;
