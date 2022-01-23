@@ -17,6 +17,40 @@
     position: relative;
     top: 10vh;
 }
+.separator {
+    height: 3em;
+    width: 2px;
+    background: #000;
+    display: block;
+    margin: 0 10px;
+}
+#weatherContainer {
+    padding: 6px 1em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    width: fit-content;
+    background: #fff;
+    /* border-top-right-radius: 20px; */
+    border-bottom-right-radius: 20px;
+}
+#weatherTemp {
+    font-size: 1.2em;
+}
+
+#weatherIcon ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+}
+#weatherIcon li {
+    padding: 0.5em;
+    display: inline-block;
+    background: #fff;
+}
+
 #jokeprint {
     align-content: center;
     align-items: center;
@@ -71,4 +105,5 @@
 .btn.success {
     font-size: 1.2em;
     padding: 0.6em 2em;
+    border-radius: 50px;
 }
